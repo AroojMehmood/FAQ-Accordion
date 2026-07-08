@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ | Web Development Basics</title>
+
+    <!-- Google Font: Poppins  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /*  CSS Reset */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 15px;
+        background: url("bg.jpg") center center/cover;
+      }
+      /* Accordion Card */
+      .accordian {
+        width: 100%;
+        max-width: 650px;
+        background-color: #94ced7;
+        padding: 40px;
+        border: 2px solid #bac7c9;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(249, 245, 245, 0.2);
+      }
+
+      .accordian .accordian-title {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+        color: #222;
+      }
+
+      .accordian .accordian-subtitle {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #777;
+        font-size: 15px;
+      }
+
+      /* Question */
+      .accordian .content-container .question {
+        padding: 18px 35px 18px 0px;
+        font-size: 17px;
+        font-weight: 500;
+        color: #222;
+        cursor: pointer;
+        border-bottom: 1px solid #e5e5e5;
+        position: relative;
+        transition: color 0.3s;
+      }
+
+      .accordian .content-container .question:hover {
+        color: #4f6df5;
+      }
+
+      /* the "+" icon */
+      .accordian .content-container .question::after {
+        content: "+";
+        position: absolute;
+        right: 5px;
+        top: 18px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4f6df5;
+        transition: transform 0.3s;
+      }
+
+      /* rotate "+" into an "x" when open */
+      .accordian .content-container.active .question::after {
+        transform: rotate(45deg);
+      }
+
+      .accordian .content-container.active .question {
+        color: #4f6df5;
+        border-bottom-color: transparent;
+      }
+
+      /*  Answer  */
+      .accordian .content-container .answer {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.7;
+        width: 100%;
+
+        max-height: 0px;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          opacity 0.3s ease,
+          padding 0.4s ease;
+      }
+
+      .accordian .content-container.active .answer {
+        max-height: 250px;
+        opacity: 1;
+        padding: 12px 0px 22px 0px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 500px) {
+        .accordian {
+          padding: 26px 22px;
+          border-radius: 16px;
+        }
+
+        .accordian .accordian-title {
+          font-size: 21px;
+        }
+
+        .accordian .content-container .question {
+          font-size: 15px;
+          padding: 15px 30px 15px 0px;
+        }
+
+        .accordian .content-container .answer {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordian">
+      <h2 class="accordian-title">Frequently Asked Questions</h2>
+      <p class="accordian-subtitle">Common questions about web development</p>
+
+      <div class="content-container">
+        <div class="question">What is the difference between HTML and CSS?</div>
+        <div class="answer">
+          HTML (HyperText Markup Language) is used to structure the content of a
+          webpage, such as headings, paragraphs, and images. CSS (Cascading
+          Style Sheets) is used to style that content — controlling colors,
+          layout, fonts, and spacing.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="question">What is responsive web design?</div>
+        <div class="answer">
+          Responsive web design is an approach where a website automatically
+          adjusts its layout and content to look good on different screen sizes,
+          from mobile phones to tablets and desktops, usually using CSS media
+          queries.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="question">
+          What is the difference between let, const, and var in JavaScript?
+        </div>
+        <div class="answer">
+          var is function-scoped and can be redeclared, which can lead to bugs.
+          let is block-scoped and can be reassigned but not redeclared in the
+          same scope. const is also block-scoped but cannot be reassigned after
+          it is set, making it ideal for values that shouldn't change.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="question">What is the DOM in JavaScript?</div>
+        <div class="answer">
+          The DOM (Document Object Model) is a tree-like representation of a
+          webpage that JavaScript can read and modify. It lets you select
+          elements, change their content, update styles, and respond to user
+          actions like clicks.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="question">
+          What is the difference between frontend and backend development?
+        </div>
+        <div class="answer">
+          Frontend development focuses on what users see and interact with in
+          the browser, using HTML, CSS, and JavaScript. Backend development
+          handles the server, database, and application logic that powers the
+          frontend, often using languages like Node.js, Python, or PHP.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const accordian = document.getElementsByClassName("content-container");
+
+      for (let i = 0; i < accordian.length; i++) {
+        accordian[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+        });
+      }
+    </script>
+  </body>
+</html>
